@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Thank You</title>
+
+<meta http-equiv="refresh" content="5;url=/">
+
+<link rel="stylesheet"
+href="{{ url_for('static', filename='style.css') }}">
+
+<style>
+
+body{
+
+background:url("/static/election.png");
+
+background-size:cover;
+
+background-position:center;
+
+font-family:Arial;
+
+}
+
+.overlay{
+
+background:rgba(0,0,0,0.7);
+
+height:100vh;
+
+display:flex;
+
+justify-content:center;
+
+align-items:center;
+
+}
+
+.box{
+
+background:white;
+
+padding:60px;
+
+border-radius:30px;
+
+text-align:center;
+
+width:700px;
+
+box-shadow:0px 10px 30px black;
+
+}
+
+.tick{
+
+font-size:100px;
+
+color:green;
+
+}
+
+h1{
+
+font-size:50px;
+
+margin-top:20px;
+
+color:#0b5ed7;
+
+}
+
+h2{
+
+font-size:32px;
+
+margin-top:20px;
+
+color:#444;
+
+}
+
+#count{
+
+font-size:40px;
+
+font-weight:bold;
+
+color:red;
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="overlay">
+
+<div class="box">
+
+<div class="tick">
+
+✅
+
+</div>
+
+<h1>
+
+THANK YOU FOR VOTING
+
+</h1>
+
+<h2>
+
+Your vote has been recorded successfully.
+
+</h2>
+
+<h2>
+
+Returning to Home Page in
+
+<span id="count">5</span>
+
+seconds...
+
+</h2>
+
+</div>
+
+</div>
+
+<script>
+
+let sec=5;
+
+setInterval(function(){
+
+sec--;
+
+document.getElementById("count").innerHTML=sec;
+
+},1000);
+
+</script>
+
+</body>
+
+</html>

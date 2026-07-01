@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Election Results</title>
+
+<link rel="stylesheet"
+href="{{ url_for('static', filename='style.css') }}">
+
+<style>
+
+body{
+
+background:url("/static/election.png");
+
+background-size:cover;
+
+font-family:Arial;
+
+margin:0;
+
+}
+
+.overlay{
+
+background:rgba(0,0,0,.70);
+
+padding:40px;
+
+min-height:100vh;
+
+}
+
+.main{
+
+width:95%;
+
+margin:auto;
+
+}
+
+.house{
+
+background:white;
+
+border-radius:20px;
+
+margin-bottom:40px;
+
+padding:25px;
+
+box-shadow:0 0 20px black;
+
+}
+
+.house h2{
+
+background:#0d6efd;
+
+color:white;
+
+padding:15px;
+
+border-radius:10px;
+
+text-align:center;
+
+font-size:34px;
+
+}
+
+h1{
+
+text-align:center;
+
+font-size:52px;
+
+color:white;
+
+margin-bottom:30px;
+
+}
+
+h3{
+
+color:#198754;
+
+font-size:30px;
+
+margin-top:30px;
+
+}
+
+table{
+
+width:100%;
+
+border-collapse:collapse;
+
+margin-top:15px;
+
+}
+
+th{
+
+background:#ffc107;
+
+padding:12px;
+
+font-size:24px;
+
+}
+
+td{
+
+padding:12px;
+
+font-size:22px;
+
+text-align:center;
+
+border-bottom:1px solid #ddd;
+
+}
+
+.winner{
+
+background:#d1e7dd;
+
+font-weight:bold;
+
+font-size:24px;
+
+}
+
+.back{
+
+display:inline-block;
+
+margin-top:25px;
+
+padding:15px 30px;
+
+background:#0d6efd;
+
+color:white;
+
+text-decoration:none;
+
+border-radius:12px;
+
+font-size:22px;
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="overlay">
+
+<div class="main">
+
+<h1>
+
+🏆 HOUSE ELECTION RESULTS
+
+</h1>
+
+{% for house,data in results.items() %}
+
+<div class="house">
+
+<h2>
+
+{{ house }} House
+
+</h2>
+
+<h3>
+
+🏆 House Captain
+
+</h3>
+
+<table>
+
+<tr>
+
+<th>Candidate</th>
+
+<th>Votes</th>
+
+</tr>
+
+{% if data.captain %}
+
+{% set maxcap=data.captain.values()|max %}
+
+{% for name,votes in data.captain.items() %}
+
+<tr {% if votes==maxcap %}class="winner"{% endif %}>
+
+<td>
+
+{% if votes==maxcap %}🥇{% endif %}
+
+{{name}}
+
+</td>
+
+<td>{{votes}}</td>
+
+</tr>
+
+{% endfor %}
+
+{% else %}
+
+<tr>
+
+<td colspan="2">
+
+No Votes Yet
+
+</td>
+
+</tr>
+
+{% endif %}
+
+</table>
+
+<h3>
+
+🌟 House Vice Captain
+
+</h3>
+
+<table>
+
+<tr>
+
+<th>Candidate</th>
+
+<th>Votes</th>
+
+</tr>
+
+{% if data.vice %}
+
+{% set maxvice=data.vice.values()|max %}
+
+{% for name,votes in data.vice.items() %}
+
+<tr {% if votes==maxvice %}class="winner"{% endif %}>
+
+<td>
+
+{% if votes==maxvice %}🥇{% endif %}
+
+{{name}}
+
+</td>
+
+<td>{{votes}}</td>
+
+</tr>
+
+{% endfor %}
+
+{% else %}
+
+<tr>
+
+<td colspan="2">
+
+No Votes Yet
+
+</td>
+
+</tr>
+
+{% endif %}
+
+</table>
+
+</div>
+
+{% endfor %}
+
+<center>
+
+<a class="back"
+
+href="/admin?password=ggn2026">
+
+⬅ Back to Admin
+
+</a>
+
+</center>
+
+</div>
+
+</div>
+
+</body>
+
+</html>

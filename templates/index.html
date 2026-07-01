@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>GGN International School Election 2026</title>
+
+<link rel="stylesheet"
+href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+<body>
+
+<div class="overlay">
+
+
+<p class="instruction">
+
+Touch your House to Vote
+
+</p>
+
+<div class="house-container">
+
+{% for house, details in houses.items() %}
+
+<a href="/vote/{{house}}" class="house-card">
+
+<img src="{{ url_for('static', filename=details.logo) }}">
+
+<h2>{{house}}</h2>
+
+<p>Touch to Vote</p>
+
+</a>
+
+{% endfor %}
+
+</div>
+
+</div>
+
+</body>
+
+</html>
